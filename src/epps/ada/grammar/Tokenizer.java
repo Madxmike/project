@@ -17,8 +17,8 @@ public class Tokenizer {
     public Tokenizer(TokenPattern... patterns) {
         this.patterns = Arrays.asList(patterns);
 
-        System.out.println("Tokenizer created with the following patterns:");
-        this.patterns.stream().map(TokenPattern::getPattern).forEach(System.out::println);
+        // System.out.println("Tokenizer created with the following patterns:");
+        // this.patterns.stream().map(TokenPattern::getPattern).forEach(System.out::println);
     }
 
     public Optional<TokenPattern> findPattern() {
@@ -41,9 +41,20 @@ public class Tokenizer {
         return new Token(this.partial.toString(), this.pattern);
     }
 
+    public boolean allowWhitespace() {
+        return this.pattern != null ? this.pattern.allowWhitespace() : false; 
+    }
+
     public void append(char c) {
         this.partial.append(c);
-        this.findPattern().ifPresent(p -> this.pattern = p);
+        this.pattern = this.findPattern().orElse(null);
+    }
+
+    public char popLast() {
+       char c = this.partial.charAt(this.partial.length() - 1);
+       this.partial.deleteCharAt(this.partial.length() - 1);
+       this.pattern = this.findPattern().orElse(null);
+       return c;
     }
 
     public void reset() {

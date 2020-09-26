@@ -27,9 +27,27 @@ public class Scanner {
 
         try {
             char c = this.skipWhitespace();
-            while (!this.tokenizer.hasMatch() && !isWhitespace(c)) {
+
+            boolean peeking = false;
+            while (this.tokenizer.allowWhitespace() || !isWhitespace(c)) {
                 this.tokenizer.append(c);
-                c = this.next();
+
+                if (this.tokenizer.hasMatch()) {
+                    // If we match we need to do a look ahead to see if we should continue or not
+                    // as "fo" is an indentifier but so is "foo"
+                    peeking = true;
+                }
+
+
+                if (peeking && !this.tokenizer.hasMatch()) {
+                    peeking = false;
+                    this.input.reset();
+                    this.tokenizer.popLast();
+                    break;
+                }
+
+
+                c = this.next(peeking);
             }
             return this.tokenizer.getToken();
         } catch (EndOfStreamException e) {
@@ -38,10 +56,10 @@ public class Scanner {
     }
 
     public char skipWhitespace() throws IOException, EndOfStreamException {
-        char c = this.next();
+        char c = this.next(false);
 
         while (isWhitespace(c)) {
-            c = this.next();
+            c = this.next(false);
         }
 
         return c;
@@ -51,7 +69,10 @@ public class Scanner {
         return c == ' ' || c == '\t' || c == '\n' || c == '\r';
     }
 
-    public char next() throws IOException, EndOfStreamException {
+    public char next(boolean peek) throws IOException, EndOfStreamException {
+        if (peek) {
+            this.input.mark(1);
+        }
         int in = this.input.read();
         if (in == -1) {
             throw new EndOfStreamException();

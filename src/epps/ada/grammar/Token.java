@@ -6,15 +6,20 @@ package grammar;
 */
 public class Token {
 
-    private String lexeme;
+    private String literal;
     private TokenPattern pattern;
 
     public Token(String lexeme, TokenPattern pattern) {
-        this.lexeme = lexeme;
+        this.literal = lexeme;
         this.pattern = pattern;
     }
 
-    public String toString() {
-        return this.pattern.resolve() + "(" + lexeme + ")";
+    public String getLiteral() {
+        return this.getLiteral();
     }
+
+    public String toString() {
+        return this.pattern.resolve() + "(" + literal + ")";
+    }
+
 }

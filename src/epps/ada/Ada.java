@@ -1,9 +1,13 @@
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 
 import grammar.Token;
 import grammar.TokenPattern;
@@ -18,24 +22,36 @@ public class Ada {
             return;
         }
 
-        Tokenizer tokenizer = new Tokenizer(TokenPattern.LBRACE, TokenPattern.RBRACE, TokenPattern.PROCEDURE);
-        Path filePath = FileSystems.getDefault().getPath(args[0]);
-        try (InputStream file = Files.newInputStream(filePath)) {
-            Scanner scanner = new Scanner(file, tokenizer);
+        Tokenizer tokenizer = new Tokenizer(TokenPattern.values());
+        Path inputFilePath = FileSystems.getDefault().getPath(args[0]);
+        Path outputFilePath = FileSystems.getDefault().getPath("./output.txt");
+
+
+
+        
+        try {
+            InputStream inputFile = new BufferedInputStream(Files.newInputStream(inputFilePath));
+            PrintStream outputFile = new PrintStream(Files.newOutputStream(outputFilePath, StandardOpenOption.APPEND));
+
+            Scanner scanner = new Scanner(inputFile, tokenizer);
 
             Token token = scanner.nextToken();
             while (token != null) {
                 System.out.println(token);
+                outputFile.println(token.toString());
                 token = scanner.nextToken();
             }
 
+            inputFile.close();
+            outputFile.close();
+
         } catch (IOException e) {
-            System.out.println("could not find and open file: " + args[0]);
-            return;
+            System.out.println(e);
         } catch (IllegalTokenException e) {
             System.err.println(e);
-            return;
         }
+
+
 
     }
 }
