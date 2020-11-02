@@ -2,6 +2,7 @@ package lexing.errors;
 
 import lexing.ast.Statement;
 
+@SuppressWarnings("serial")
 public class UnexpectedStatementException extends ParsingException {
 
     private Statement statement;

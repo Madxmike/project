@@ -1,5 +1,6 @@
 package lexing.errors;
 
+@SuppressWarnings("serial")
 public class MismatchedDeclarationsException extends ParsingException {
 
     private int leftExpected;

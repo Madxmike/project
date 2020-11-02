@@ -1,5 +1,6 @@
 package lexing.errors;
 
+@SuppressWarnings("serial")
 public class ParsingException extends Exception {
 
     private String message;

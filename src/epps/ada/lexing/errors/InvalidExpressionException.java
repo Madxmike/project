@@ -2,6 +2,7 @@ package lexing.errors;
 
 import lexing.ast.Expression;
 
+@SuppressWarnings("serial")
 public class InvalidExpressionException extends ParsingException {
 
     private Expression expression;

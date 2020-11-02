@@ -2,6 +2,7 @@ package lexing.errors;
 
 import lexing.ast.Type;
 
+@SuppressWarnings("serial")
 public class UnknownTypeException extends ParsingException {
     private String identifierValue;
     private String typeValue;

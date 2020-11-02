@@ -1,5 +1,6 @@
 package lexing.errors;
 
+@SuppressWarnings("serial")
 public class UnexpectedSymbolException extends ParsingException {
     private String found;
 

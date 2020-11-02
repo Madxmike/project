@@ -2,6 +2,7 @@ package lexing.errors;
 
 import grammar.TokenPattern;
 
+@SuppressWarnings("serial")
 public class ExpectedSymbolException extends ParsingException {
 
     private TokenPattern pattern;
