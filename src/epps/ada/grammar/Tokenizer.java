@@ -64,6 +64,7 @@ public class Tokenizer {
         this.pattern = null;
     }
 
+    @SuppressWarnings("serial")
     public class IllegalTokenException extends ParsingException {
         private String literal;
 
