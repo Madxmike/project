@@ -1,8 +1,6 @@
 package lexing.ast;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 public class BeginStatement implements Statement {
 
@@ -30,7 +28,7 @@ public class BeginStatement implements Statement {
         builder.append(belongsTo);
         return builder.toString();
     }
-    
+
     @Override
     public void addChildren(List<Node> children) {
         children.addAll(statements);

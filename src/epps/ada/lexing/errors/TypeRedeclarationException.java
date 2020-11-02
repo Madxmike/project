@@ -11,9 +11,9 @@ public class TypeRedeclarationException extends ParsingException {
         this.identifierValue = identifierValue;
         this.originalType = originalType;
         this.newType = newType;
-	}
+    }
 
-	@Override
+    @Override
     public String toString() {
         return identifierValue + "(type " + originalType.getValue() + ") redeclared as type " + newType.getValue();
     }

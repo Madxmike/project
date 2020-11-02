@@ -1,7 +1,5 @@
 package lexing.ast;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class AssignmentStatement extends IdentifierStatement {
@@ -41,5 +39,5 @@ public class AssignmentStatement extends IdentifierStatement {
         children.addAll(identifiers);
         children.addAll(values);
     }
-    
+
 }

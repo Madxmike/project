@@ -1,7 +1,7 @@
 package lexing.errors;
 
 public class MismatchedDeclarationsException extends ParsingException {
-    
+
     private int leftExpected;
     private int rightExpected;
 
@@ -12,6 +12,7 @@ public class MismatchedDeclarationsException extends ParsingException {
 
     @Override
     public String toString() {
-        return "mismatched declaration: " + leftExpected + " identifiers were found, but " + rightExpected + " values were given";
+        return "mismatched declaration: " + leftExpected + " identifiers were found, but " + rightExpected
+                + " values were given";
     }
 }

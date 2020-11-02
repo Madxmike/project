@@ -25,10 +25,10 @@ public class Scanner {
 
     public Token nextToken() throws IllegalTokenException {
         try {
-            if(this.input.available() == 0) {
+            if (this.input.available() == 0) {
                 return new Token("", TokenPattern.EOF);
             }
-            
+
             this.tokenizer.reset();
             char c = this.skipWhitespace();
 
@@ -52,7 +52,7 @@ public class Scanner {
                 c = this.next(peeking);
             }
             return this.tokenizer.getToken();
-        } catch (EndOfStreamException e) {        
+        } catch (EndOfStreamException e) {
             return this.tokenizer.getToken();
         } catch (IOException e) {
             return this.tokenizer.getToken();

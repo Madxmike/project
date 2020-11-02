@@ -11,10 +11,10 @@ public class PrefixExpressionParser implements ExpressionParser<PrefixExpression
     public PrefixExpression parse(Parser parser, TokenStream tokenStream) throws ParsingException {
 
         PrefixExpression prefix = new PrefixExpression(tokenStream.currentLiteral());
-        
+
         tokenStream.advance();
         prefix.setRight(parser.parseExpression(parser.currentPrecedence()));
         return prefix;
     }
-    
+
 }

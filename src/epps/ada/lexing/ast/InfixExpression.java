@@ -24,9 +24,8 @@ public class InfixExpression implements Expression {
 
     public void addChildren(List<Node> children) {
         children.add(left);
-        //TODO - add operator here
+        // TODO - add operator here
         children.add(right);
     }
 
-    
 }

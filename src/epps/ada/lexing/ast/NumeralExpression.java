@@ -12,5 +12,5 @@ public class NumeralExpression implements Expression {
     public String toString() {
         return Float.toString(value);
     }
-    
+
 }

@@ -22,27 +22,25 @@ public class BeginStatementParser implements StatementParser<BeginStatement> {
         tokenStream.advance();
         List<Statement> statements = new ArrayList<>();
 
-        while(!tokenStream.isCurrent(TokenPattern.KEYWORD_END)) {
+        while (!tokenStream.isCurrent(TokenPattern.KEYWORD_END)) {
             Statement statement = parser.parseStatement();
-            if(statement instanceof DeclarationStatement) {
+            if (statement instanceof DeclarationStatement) {
                 throw new ParsingException("declaration statement now allowed in begin block");
             }
             statements.add(statement);
         }
-        
+
         tokenStream.currentMustBe(TokenPattern.KEYWORD_END);
         tokenStream.advance();
 
         Expression belongsTo = parser.parseExpression(0);
-        if(belongsTo instanceof IdentifierExpression) {
+        if (belongsTo instanceof IdentifierExpression) {
             tokenStream.nextMustBe(TokenPattern.SYMBOL_SEMICOLON);
             tokenStream.advance();
             return new BeginStatement(statements, (IdentifierExpression) belongsTo);
         }
-        
-
 
         throw new InvalidExpressionException(belongsTo);
     }
-    
+
 }

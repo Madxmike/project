@@ -1,20 +1,16 @@
 package lexing.parsing;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import grammar.TokenPattern;
-import grammar.Tokenizer.IllegalTokenException;
 import lexing.ast.Expression;
-import lexing.ast.IdentifierExpression;
 import lexing.ast.NumeralExpression;
 import lexing.ast.Program;
 import lexing.ast.Statement;
 import lexing.ast.Type;
-import lexing.errors.InvalidExpressionException;
 import lexing.errors.ParsingException;
 import lexing.parsing.expressions.ExpressionParser;
 import lexing.parsing.expressions.GroupedExpressionParser;
@@ -30,12 +26,11 @@ public class Parser {
     private TokenStream tokenStream;
 
     private Map<TokenPattern, StatementParser<?>> statementParsers;
-    private Map<TokenPattern, ExpressionParser<?>>  prefixParsers;
-    private Map<TokenPattern, InfixExpressionParser>  infixParsers;
+    private Map<TokenPattern, ExpressionParser<?>> prefixParsers;
+    private Map<TokenPattern, InfixExpressionParser> infixParsers;
     private Map<TokenPattern, Integer> precedences;
 
     private boolean atTopLevel;
-
 
     public Parser(TokenStream tokenStream) {
         this.tokenStream = tokenStream;
@@ -53,7 +48,6 @@ public class Parser {
         });
         this.prefixParsers.put(TokenPattern.SYMBOL_MINUS, new PrefixExpressionParser());
         this.prefixParsers.put(TokenPattern.SYMBOL_PAREN_LEFT, new GroupedExpressionParser());
-
 
         InfixExpressionParser infixExpressionParser = new InfixExpressionParser();
         this.infixParsers = new HashMap<>();
@@ -75,7 +69,6 @@ public class Parser {
         this.precedences.put(TokenPattern.SYMBOL_MINUS, 3);
         this.precedences.put(TokenPattern.SYMBOL_DIVISION, 4);
         this.precedences.put(TokenPattern.SYMBOL_MULTIPLICATION, 4);
-
 
         IdentifierTable.addType(new Type("Integer"));
         IdentifierTable.addType(new Type("Float"));
@@ -103,13 +96,14 @@ public class Parser {
     public Statement parseStatement() throws ParsingException {
         StatementParser<?> statementParser = this.statementParsers.get(this.tokenStream.currentPattern());
 
-
-        if(statementParser != null) {
-            if((atTopLevel && !statementParser.allowedAtTopLevel()) || (!atTopLevel && !statementParser.allowedBelowTopLevel())) {
+        if (statementParser != null) {
+            if ((atTopLevel && !statementParser.allowedAtTopLevel())
+                    || (!atTopLevel && !statementParser.allowedBelowTopLevel())) {
                 throw new ParsingException("statement not allowed at this level");
             }
-    
-            // System.out.println("parser: " + statementParser.getClass().getSimpleName() + " for: " + this.tokenStream.currentLiteral());
+
+            // System.out.println("parser: " + statementParser.getClass().getSimpleName() +
+            // " for: " + this.tokenStream.currentLiteral());
             this.atTopLevel = false;
             Statement statement = statementParser.parse(this, this.tokenStream);
             if (statement == null) {
@@ -118,17 +112,17 @@ public class Parser {
             return statement;
         }
 
-       return null;
+        return null;
     }
 
     public Expression parseExpression(int precedence) throws ParsingException {
         ExpressionParser<?> prefixParser = this.prefixParsers.get(this.tokenStream.currentPattern());
-        if(prefixParser == null) {
+        if (prefixParser == null) {
             return null;
         }
 
         Expression leftExpression = prefixParser.parse(this, this.tokenStream);
-        while(!this.tokenStream.isNext(TokenPattern.SYMBOL_SEMICOLON) && precedence < this.nextPrecedence()) {
+        while (!this.tokenStream.isNext(TokenPattern.SYMBOL_SEMICOLON) && precedence < this.nextPrecedence()) {
             InfixExpressionParser infixParser = this.infixParsers.get(this.tokenStream.nextPattern());
             if (infixParser == null) {
                 return leftExpression;
@@ -145,16 +139,16 @@ public class Parser {
         List<Expression> expressions = new ArrayList<>();
 
         do {
-            if(this.tokenStream.isCurrent(TokenPattern.SYMBOL_COMMA)) {
+            if (this.tokenStream.isCurrent(TokenPattern.SYMBOL_COMMA)) {
                 this.tokenStream.advance();
             }
             Expression expression = this.parseExpression(0);
-            if(expression != null) {
+            if (expression != null) {
                 expressions.add(expression);
             }
             this.tokenStream.advance();
 
-        } while(this.tokenStream.isCurrent(TokenPattern.SYMBOL_COMMA));
+        } while (this.tokenStream.isCurrent(TokenPattern.SYMBOL_COMMA));
 
         return expressions;
     }

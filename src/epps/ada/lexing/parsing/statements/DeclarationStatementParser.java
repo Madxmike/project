@@ -10,7 +10,6 @@ import lexing.ast.IdentifierExpression;
 import lexing.ast.Type;
 import lexing.errors.MismatchedDeclarationsException;
 import lexing.errors.ParsingException;
-import lexing.errors.UnexpectedSymbolException;
 import lexing.parsing.IdentifierTable;
 import lexing.parsing.Parser;
 import lexing.parsing.TokenStream;
@@ -45,10 +44,11 @@ public class DeclarationStatementParser implements StatementParser<DeclarationSt
             return new DeclarationStatement(identifiers, type, defaultValues);
         }
 
-        //Special case for formal parameters declaration
-        //If we detect we are the last declaration in a procedure/function's formal parameters
-        //then skip the semi-colon check
-        if(tokenStream.isCurrent(TokenPattern.SYMBOL_PAREN_RIGHT) && tokenStream.isNext(TokenPattern.KEYWORD_IS)) {
+        // Special case for formal parameters declaration
+        // If we detect we are the last declaration in a procedure/function's formal
+        // parameters
+        // then skip the semi-colon check
+        if (tokenStream.isCurrent(TokenPattern.SYMBOL_PAREN_RIGHT) && tokenStream.isNext(TokenPattern.KEYWORD_IS)) {
             return new DeclarationStatement(identifiers, type, new ArrayList<>());
         }
 

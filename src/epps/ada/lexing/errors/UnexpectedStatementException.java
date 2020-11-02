@@ -3,7 +3,7 @@ package lexing.errors;
 import lexing.ast.Statement;
 
 public class UnexpectedStatementException extends ParsingException {
-    
+
     private Statement statement;
 
     public UnexpectedStatementException(Statement statement2) {

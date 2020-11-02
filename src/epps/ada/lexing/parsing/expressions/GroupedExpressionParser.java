@@ -12,9 +12,9 @@ public class GroupedExpressionParser implements ExpressionParser<GroupedExpressi
     @Override
     public GroupedExpression parse(Parser parser, TokenStream tokenStream) throws ParsingException {
         tokenStream.advance();
-        
+
         Expression expression = parser.parseExpression(0);
-        if(!tokenStream.isNext(TokenPattern.SYMBOL_PAREN_RIGHT)) {
+        if (!tokenStream.isNext(TokenPattern.SYMBOL_PAREN_RIGHT)) {
             return null;
         }
 
@@ -22,5 +22,4 @@ public class GroupedExpressionParser implements ExpressionParser<GroupedExpressi
         return new GroupedExpression(expression);
     }
 
-    
 }

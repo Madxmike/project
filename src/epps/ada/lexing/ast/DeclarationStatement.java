@@ -1,10 +1,9 @@
 package lexing.ast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DeclarationStatement extends IdentifierStatement {
-    
+
     private List<IdentifierExpression> identifiers;
     private Type type;
     private List<Expression> defaultValues;
@@ -29,7 +28,6 @@ public class DeclarationStatement extends IdentifierStatement {
 
         builder.append(type.getValue());
 
-
         if (!defaultValues.isEmpty()) {
             builder.append(" := ");
 
@@ -40,7 +38,6 @@ public class DeclarationStatement extends IdentifierStatement {
             builder.append(defaultValues.get(defaultValues.size() - 1));
             builder.append(";");
         }
-
 
         return builder.toString();
     }

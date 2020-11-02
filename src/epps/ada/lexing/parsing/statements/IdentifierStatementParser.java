@@ -18,23 +18,24 @@ public class IdentifierStatementParser implements StatementParser<IdentifierStat
     @Override
     public IdentifierStatement parse(Parser parser, TokenStream tokenStream) throws ParsingException {
         List<IdentifierExpression> identifiers = this.parseIdentifierList(parser, tokenStream);
-        if(tokenStream.isCurrent(TokenPattern.SYMBOL_COLON)) {
+        if (tokenStream.isCurrent(TokenPattern.SYMBOL_COLON)) {
             tokenStream.advance();
             return new DeclarationStatementParser(identifiers).parse(parser, tokenStream);
-        } else if(tokenStream.isCurrent(TokenPattern.SYMBOL_ASSIGNMENT)) {
+        } else if (tokenStream.isCurrent(TokenPattern.SYMBOL_ASSIGNMENT)) {
             tokenStream.advance();
             return new AssignmentStatementParser(identifiers).parse(parser, tokenStream);
         }
 
         throw new ExpectedSymbolException(TokenPattern.SYMBOL_COLON, tokenStream.currentLiteral());
-    }    
+    }
 
-    private List<IdentifierExpression> parseIdentifierList(Parser parser, TokenStream tokenStream) throws ParsingException {
+    private List<IdentifierExpression> parseIdentifierList(Parser parser, TokenStream tokenStream)
+            throws ParsingException {
         List<Expression> expressions = parser.parseExpressionList();
 
         List<IdentifierExpression> identifiers = new ArrayList<>();
         for (Expression expression : expressions) {
-            if(expression instanceof IdentifierExpression) {
+            if (expression instanceof IdentifierExpression) {
                 identifiers.add((IdentifierExpression) expression);
             } else {
                 throw new InvalidExpressionException(expression);

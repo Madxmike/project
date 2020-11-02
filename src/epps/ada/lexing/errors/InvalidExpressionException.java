@@ -3,7 +3,7 @@ package lexing.errors;
 import lexing.ast.Expression;
 
 public class InvalidExpressionException extends ParsingException {
-    
+
     private Expression expression;
 
     public InvalidExpressionException(Expression expression) {

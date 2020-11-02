@@ -11,7 +11,6 @@ import lexing.errors.TypeRedeclarationException;
 import lexing.errors.UnknownTypeException;
 
 public class IdentifierTable {
-    
 
     private static final Type UNKNOWN_TYPE = new Type("");
     private static Map<String, Type> identifiers = new HashMap<>();
@@ -24,7 +23,8 @@ public class IdentifierTable {
         return new IdentifierExpression(identifierValue);
     }
 
-    public static void setTypeForIdentifier(IdentifierExpression identifier, Type type) throws TypeRedeclarationException, UnknownTypeException {
+    public static void setTypeForIdentifier(IdentifierExpression identifier, Type type)
+            throws TypeRedeclarationException, UnknownTypeException {
         if (!knownTypes.contains(type)) {
             throw new UnknownTypeException(identifier.getValue(), type);
         }
@@ -42,6 +42,5 @@ public class IdentifierTable {
         // System.out.println(type.getValue());
         knownTypes.add(type);
     }
-
 
 }

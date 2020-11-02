@@ -11,7 +11,6 @@ public class IdentifierExpression implements Expression {
         return this.value;
     }
 
-
     @Override
     public int hashCode() {
         return this.value.hashCode();
@@ -19,7 +18,7 @@ public class IdentifierExpression implements Expression {
 
     @Override
     public boolean equals(Object other) {
-        if(other == null || !(other instanceof IdentifierExpression)) {
+        if (other == null || !(other instanceof IdentifierExpression)) {
             return false;
         }
 
@@ -32,5 +31,3 @@ public class IdentifierExpression implements Expression {
         return this.value;
     }
 }
-
-

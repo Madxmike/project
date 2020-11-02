@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import lexing.errors.ParsingException;
-import lexing.parsing.Parser;
 
 /*
 * A Tokenizer will take a sequence of characters and find the first token pattern from a list of patterns.
@@ -45,7 +44,7 @@ public class Tokenizer {
     }
 
     public boolean allowWhitespace() {
-        return this.pattern != null ? this.pattern.allowWhitespace() : false; 
+        return this.pattern != null ? this.pattern.allowWhitespace() : false;
     }
 
     public void append(char c) {
@@ -54,10 +53,10 @@ public class Tokenizer {
     }
 
     public char popLast() {
-       char c = this.partial.charAt(this.partial.length() - 1);
-       this.partial.deleteCharAt(this.partial.length() - 1);
-       this.pattern = this.findPattern().orElse(null);
-       return c;
+        char c = this.partial.charAt(this.partial.length() - 1);
+        this.partial.deleteCharAt(this.partial.length() - 1);
+        this.pattern = this.findPattern().orElse(null);
+        return c;
     }
 
     public void reset() {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Program implements Node {
-    
+
     private List<Statement> statements;
 
     public Program() {
@@ -14,7 +14,6 @@ public class Program implements Node {
     public void addStatement(Statement statement) {
         this.statements.add(statement);
     }
-
 
     @Override
     public String toString() {
@@ -28,7 +27,7 @@ public class Program implements Node {
     }
 
     public void printProgram() {
-        StringBuilder builder =  new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
         printNode(builder, this, 0);
 
@@ -37,7 +36,7 @@ public class Program implements Node {
 
     public void printNode(StringBuilder builder, Node node, int indentation) {
         builder.append("\n");
-        for(int i = 0; i < indentation; i++) {
+        for (int i = 0; i < indentation; i++) {
             builder.append("    ");
         }
 

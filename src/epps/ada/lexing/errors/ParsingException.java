@@ -1,7 +1,7 @@
 package lexing.errors;
 
 public class ParsingException extends Exception {
-    
+
     private String message;
 
     public ParsingException() {

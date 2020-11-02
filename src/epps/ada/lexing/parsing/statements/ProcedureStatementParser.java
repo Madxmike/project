@@ -25,7 +25,7 @@ public class ProcedureStatementParser implements StatementParser<ProcedureStatem
         tokenStream.currentMustBe(TokenPattern.IDENTIFIER);
 
         Expression functionName = parser.parseExpression(0);
-        if(!(functionName instanceof IdentifierExpression)) {
+        if (!(functionName instanceof IdentifierExpression)) {
             throw new InvalidExpressionException(functionName);
         }
         tokenStream.advance();
@@ -38,23 +38,21 @@ public class ProcedureStatementParser implements StatementParser<ProcedureStatem
             tokenStream.advance();
         }
 
-
         tokenStream.currentMustBe(TokenPattern.KEYWORD_IS);
 
         // If we arn't at the begin block then we are declaring local variables
         List<DeclarationStatement> locals = new ArrayList<>();
 
-        if(!tokenStream.isNext(TokenPattern.KEYWORD_BEGIN)) {
+        if (!tokenStream.isNext(TokenPattern.KEYWORD_BEGIN)) {
             locals = parseDeclarationStatementList(parser, tokenStream);
             tokenStream.currentMustBe(TokenPattern.SYMBOL_SEMICOLON);
-        } 
+        }
 
         tokenStream.advance();
 
-
         tokenStream.currentMustBe(TokenPattern.KEYWORD_BEGIN);
         BeginStatement begin = (BeginStatement) parser.parseStatement();
-        if(!begin.getBelongsTo().equals(functionName)) {
+        if (!begin.getBelongsTo().equals(functionName)) {
             throw new ParsingException("expected to find " + functionName + ", but found " + begin.getBelongsTo());
         }
         tokenStream.currentMustBe(TokenPattern.SYMBOL_SEMICOLON);
@@ -67,14 +65,14 @@ public class ProcedureStatementParser implements StatementParser<ProcedureStatem
             throws ParsingException {
 
         List<DeclarationStatement> declarations = new ArrayList<>();
-        do {            
+        do {
             tokenStream.advance();
 
             try {
                 Statement statement = parser.parseStatement();
                 if (statement instanceof DeclarationStatement) {
                     declarations.add((DeclarationStatement) statement);
-                } else if(statement != null) {
+                } else if (statement != null) {
                     throw new UnexpectedStatementException(statement);
                 }
             } catch (ExpectedSymbolException e) {

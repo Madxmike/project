@@ -14,7 +14,7 @@ import lexing.parsing.TokenStream;
 public class AssignmentStatementParser implements StatementParser<AssignmentStatement> {
 
     private List<IdentifierExpression> identifiers;
-    
+
     public AssignmentStatementParser(List<IdentifierExpression> identifiers) {
         this.identifiers = identifiers;
     }
@@ -33,5 +33,5 @@ public class AssignmentStatementParser implements StatementParser<AssignmentStat
         tokenStream.advance();
         return new AssignmentStatement(identifiers, values);
     }
-    
+
 }

@@ -7,7 +7,6 @@ public class PrefixExpression implements Expression {
     private String operator;
     private Expression right;
 
-
     public PrefixExpression(String operator) {
         this.operator = operator;
     }
@@ -21,11 +20,10 @@ public class PrefixExpression implements Expression {
         return operator + right;
     }
 
-
     @Override
     public void addChildren(List<Node> children) {
-        //TODO - Add operator here
+        // TODO - Add operator here
         children.add(right);
     }
-    
+
 }

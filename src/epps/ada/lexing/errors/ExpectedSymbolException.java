@@ -1,6 +1,5 @@
 package lexing.errors;
 
-import grammar.Token;
 import grammar.TokenPattern;
 
 public class ExpectedSymbolException extends ParsingException {
@@ -22,5 +21,4 @@ public class ExpectedSymbolException extends ParsingException {
         return "expected " + pattern.resolve() + "  but found " + found;
     }
 
-    
 }

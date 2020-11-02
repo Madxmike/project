@@ -7,7 +7,7 @@ import lexing.parsing.TokenStream;
 
 @FunctionalInterface
 public interface ExpressionParser<T extends Expression> {
-    
+
     T parse(Parser parser, TokenStream tokenStream) throws ParsingException;
 
     default T parse(Parser parser, TokenStream tokenStream, Expression left) throws ParsingException {

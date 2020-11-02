@@ -1,18 +1,14 @@
 import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
-import grammar.Token;
 import grammar.TokenPattern;
 import grammar.Tokenizer;
-import grammar.Tokenizer.IllegalTokenException;
 import lexing.Scanner;
 import lexing.ast.Program;
 import lexing.parsing.Parser;
@@ -50,8 +46,6 @@ public class Ada {
             e.printStackTrace();
             System.err.println("failed to parse input: " + e);
         }
-
-
 
     }
 }

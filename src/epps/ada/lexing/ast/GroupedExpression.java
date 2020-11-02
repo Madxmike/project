@@ -15,7 +15,6 @@ public class GroupedExpression implements Expression {
         return "(" + expression.toString() + ")";
     }
 
-    
     @Override
     public void addChildren(List<Node> children) {
         children.add(expression);
