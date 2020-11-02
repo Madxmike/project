@@ -7,9 +7,12 @@ public enum TokenPattern {
     SYMBOL_MINUS("-", "-"),
     SYMBOL_MULTIPLICATION("\\*", "*"),
     SYMBOL_DIVISION("/", "/"),
+    SYMBOL_LESSTHAN("<", "<"),
+    SYMBOL_GREATERTHAN(">", ">"),
     SYMBOL_MODULO("%", "%"),
-    SYMBOL_EQUALS("=", "="),
-    SYMBOL_EQUALITY("==", "=="),
+    SYMBOL_ASSIGNMENT(":=", ":="),
+    SYMBOL_EQUALITY("=", "="),
+    SYMBOL_INEQUALITY("!=", "!="),
     SYMBOL_BANG("!", "!"),
     SYMBOL_SEMICOLON(";", ";"),
     SYMBOL_BRACKET_LEFT("\\[", "["),
@@ -20,6 +23,7 @@ public enum TokenPattern {
     SYMBOL_PAREN_RIGHT("\\)", ")"),
     SYMBOL_DOT("\\.", "."),
     SYMBOL_COMMA(",", ","),
+    SYMBOL_COLON(":", ":"),
 
     KEYWORD_WITH("^with$", "with"),
     KEYWORD_USE("^use$", "use"),
@@ -28,10 +32,16 @@ public enum TokenPattern {
     KEYWORD_BEGIN("^begin$", "begin"),
     KEYWORD_END("^end$", "end"),
 
-    NUMERAL("^[0-9]$", "NUMERAL"),
+    //TODO - Make this work with underscores and decimals
+    // Regex is on dead laptop :(
+    NUMERAL("^[0-9]+[_0-9]*[.]?[_0-9]*$", "NUMERAL"),
     LITERAL_CHARACTER("^\'(.)\'", "character_literal"),
     LITERAL_STRING("^\"([^\"]+)([\"]*)$", "string_literal", true),
-    IDENTIFIER("^([A-Za-z]+)(\\w+)$", "indentifier");
+    IDENTIFIER("^([A-Za-z]+)(\\w+)$", "indentifier"),
+    EOF("", "EOF");
+
+
+
     private Pattern pattern;
     private String resolveTo;
     private boolean allowWhitespace;
@@ -60,4 +70,5 @@ public enum TokenPattern {
     protected boolean allowWhitespace() {
         return this.allowWhitespace;
     }
+
 }

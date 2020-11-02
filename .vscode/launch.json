@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}",
+            "args": "hello_world.adb"
+
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Ada<project_8380ef48>",
+            "request": "launch",
+            "mainClass": "Ada",
+            "projectName": "project_8380ef48",
+            "args": "hello_world.adb"
+        }
+    ]
+}

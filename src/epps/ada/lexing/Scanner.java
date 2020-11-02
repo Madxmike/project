@@ -1,10 +1,11 @@
+
 package lexing;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Optional;
 
 import grammar.Token;
+import grammar.TokenPattern;
 import grammar.Tokenizer;
 import grammar.Tokenizer.IllegalTokenException;
 
@@ -22,10 +23,13 @@ public class Scanner {
         this.tokenizer = tokenizer;
     }
 
-    public Token nextToken() throws IOException, IllegalTokenException {
-        this.tokenizer.reset();
-
+    public Token nextToken() throws IllegalTokenException {
         try {
+            if(this.input.available() == 0) {
+                return new Token("", TokenPattern.EOF);
+            }
+            
+            this.tokenizer.reset();
             char c = this.skipWhitespace();
 
             boolean peeking = false;
@@ -38,7 +42,6 @@ public class Scanner {
                     peeking = true;
                 }
 
-
                 if (peeking && !this.tokenizer.hasMatch()) {
                     peeking = false;
                     this.input.reset();
@@ -46,11 +49,12 @@ public class Scanner {
                     break;
                 }
 
-
                 c = this.next(peeking);
             }
             return this.tokenizer.getToken();
-        } catch (EndOfStreamException e) {
+        } catch (EndOfStreamException e) {        
+            return this.tokenizer.getToken();
+        } catch (IOException e) {
             return this.tokenizer.getToken();
         }
     }

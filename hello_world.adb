@@ -1,6 +1,24 @@
-with Text_IO; use Text_IO;
-procedure hello is
+ procedure hello 
+(
+    paramOne : Integer := 10; 
+    paramTwo : Integer := 10;
+    paramThree : Integer
+) is
+    paramFive : Integer := 4;
 begin
-   Put_Line("Hello world!");
+
+    paramOne := paramOne * 2;
+    paramFour := paramOne + paramTwo;
+
 end hello;
 
+
+procedure singleArgs (input : Integer)
+is
+begin
+end singleArgs;
+
+procedure noArgs is 
+begin
+
+end noArgs;

@@ -14,6 +14,9 @@ import grammar.TokenPattern;
 import grammar.Tokenizer;
 import grammar.Tokenizer.IllegalTokenException;
 import lexing.Scanner;
+import lexing.ast.Program;
+import lexing.parsing.Parser;
+import lexing.parsing.TokenStream;
 
 public class Ada {
     public static void main(String[] args) {
@@ -26,29 +29,26 @@ public class Ada {
         Path inputFilePath = FileSystems.getDefault().getPath(args[0]);
         Path outputFilePath = FileSystems.getDefault().getPath("./output.txt");
 
-
-
-        
         try {
             InputStream inputFile = new BufferedInputStream(Files.newInputStream(inputFilePath));
             PrintStream outputFile = new PrintStream(Files.newOutputStream(outputFilePath, StandardOpenOption.APPEND));
 
             Scanner scanner = new Scanner(inputFile, tokenizer);
+            TokenStream tokenStream = new TokenStream(scanner);
+            Parser parser = new Parser(tokenStream);
+            Program program = parser.parse();
 
-            Token token = scanner.nextToken();
-            while (token != null) {
-                System.out.println(token);
-                outputFile.println(token.toString());
-                token = scanner.nextToken();
-            }
+            System.out.println(program.toString());
+            program.printProgram();
 
             inputFile.close();
             outputFile.close();
 
         } catch (IOException e) {
             System.out.println(e);
-        } catch (IllegalTokenException e) {
-            System.err.println(e);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("failed to parse input: " + e);
         }
 
 

@@ -15,9 +15,14 @@ public class Token {
     }
 
     public String getLiteral() {
-        return this.getLiteral();
+        return this.literal;
     }
 
+    public TokenPattern getPattern() {
+        return this.pattern;
+    }
+
+    @Override
     public String toString() {
         return this.pattern.resolve() + "(" + literal + ")";
     }

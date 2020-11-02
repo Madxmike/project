@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import lexing.errors.ParsingException;
+import lexing.parsing.Parser;
+
 /*
 * A Tokenizer will take a sequence of characters and find the first token pattern from a list of patterns.
 */
@@ -62,7 +65,7 @@ public class Tokenizer {
         this.pattern = null;
     }
 
-    public class IllegalTokenException extends Exception {
+    public class IllegalTokenException extends ParsingException {
         private String literal;
 
         public IllegalTokenException(String literal) {
