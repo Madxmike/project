@@ -85,6 +85,7 @@ public class Scanner {
         return (char) in;
     }
 
+    @SuppressWarnings("serial")
     private class EndOfStreamException extends Exception {
     }
 
