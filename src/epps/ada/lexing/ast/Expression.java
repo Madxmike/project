@@ -9,5 +9,8 @@
 
 package lexing.ast;
 
+/**
+ * The base interface implemented by all expressions
+ */
 public interface Expression extends Node {
 }

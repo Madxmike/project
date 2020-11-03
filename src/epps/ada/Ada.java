@@ -1,3 +1,4 @@
+
 /**
  * Course: Concepts of Programming Languages
  * Section: W01
@@ -44,7 +45,7 @@ public class Ada {
             Program program = parser.parse();
 
             // System.out.println(program.toString());
-            program.printProgram();
+            program.printProgram(outputFile);
 
             inputFile.close();
             outputFile.close();

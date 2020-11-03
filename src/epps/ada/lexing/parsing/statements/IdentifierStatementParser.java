@@ -21,6 +21,10 @@ import lexing.errors.ParsingException;
 import lexing.parsing.Parser;
 import lexing.parsing.TokenStream;
 
+/**
+ * An IdentifierStatementParser will parse out one of many possible statements that begin with an identifier list
+ * such as a DeclarationStatement or an AssignmentStatement.
+ */
 public class IdentifierStatementParser implements StatementParser<IdentifierStatement> {
 
     @Override
@@ -37,10 +41,16 @@ public class IdentifierStatementParser implements StatementParser<IdentifierStat
         throw new ExpectedSymbolException(TokenPattern.SYMBOL_COLON, tokenStream.currentLiteral());
     }
 
+    /**
+     * Parses out the expression list and then converts the expressions to identifiers
+     * @return The list of identifier expressions
+     * @throws ParsingException Thrown if any parsed expression is not an identifier
+     */
     private List<IdentifierExpression> parseIdentifierList(Parser parser, TokenStream tokenStream)
             throws ParsingException {
         List<Expression> expressions = parser.parseExpressionList();
 
+        // Convert expressions to identifiers
         List<IdentifierExpression> identifiers = new ArrayList<>();
         for (Expression expression : expressions) {
             if (expression instanceof IdentifierExpression) {

@@ -11,6 +11,9 @@ package lexing.errors;
 
 import lexing.ast.Expression;
 
+/**
+ * An InvalidExpressionException is thrown when the parser encounters an expression that it is not expecting
+ */
 @SuppressWarnings("serial")
 public class InvalidExpressionException extends ParsingException {
 

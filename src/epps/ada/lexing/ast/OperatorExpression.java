@@ -8,6 +8,20 @@
  */
 package lexing.ast;
 
-public class OperatorExpression implements Expression {
+import grammar.TokenPattern;
 
+/**
+ * An OperatorExpression simply defines an operator such as +, -, *, /
+ */
+public class OperatorExpression implements Expression {
+    public TokenPattern operator;
+
+    public OperatorExpression(TokenPattern operator) {
+        this.operator = operator;
+    }
+
+    @Override
+    public String toString() {
+        return operator.resolve();
+    }
 }

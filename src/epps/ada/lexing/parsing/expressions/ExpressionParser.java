@@ -13,6 +13,9 @@ import lexing.errors.ParsingException;
 import lexing.parsing.Parser;
 import lexing.parsing.TokenStream;
 
+/**
+ * A expression parser is a parser that will parse out an expression for the current token.
+ */
 @FunctionalInterface
 public interface ExpressionParser<T extends Expression> {
 

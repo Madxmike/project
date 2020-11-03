@@ -9,6 +9,9 @@
 
 package lexing.ast;
 
+/**
+ * A type defines the type of an Identifier
+ */
 public class Type extends IdentifierExpression {
 
     public Type(String value) {

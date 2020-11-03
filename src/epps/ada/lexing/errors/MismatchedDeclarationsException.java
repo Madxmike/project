@@ -9,6 +9,10 @@
 
 package lexing.errors;
 
+/**
+ * A MismatchedDeclarationsException is thrown when the parser encounters a declaration
+ * in which the number of identifiers is not equal to the number of expressions
+ */
 @SuppressWarnings("serial")
 public class MismatchedDeclarationsException extends ParsingException {
 

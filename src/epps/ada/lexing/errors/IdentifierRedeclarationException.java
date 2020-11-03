@@ -11,6 +11,9 @@ package lexing.errors;
 
 import lexing.ast.IdentifierExpression;
 
+/**
+ * An IdentifierReclarationException is thrown when the parser encounters an identifier that has already been defined in this scope
+ */
 @SuppressWarnings("serial")
 public class IdentifierRedeclarationException extends ParsingException {
 
@@ -25,6 +28,4 @@ public class IdentifierRedeclarationException extends ParsingException {
         return identifier + " was already declared in this scope";
     }
 
-
-    
 }

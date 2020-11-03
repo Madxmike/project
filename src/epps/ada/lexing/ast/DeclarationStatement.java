@@ -11,6 +11,9 @@ package lexing.ast;
 
 import java.util.List;
 
+/**
+ * A declaration statement defines declaration in which an identifier list is given a type, and possibly given default values
+ */
 public class DeclarationStatement extends IdentifierStatement {
 
     private List<IdentifierExpression> identifiers;

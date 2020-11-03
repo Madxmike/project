@@ -8,6 +8,9 @@
  */
 package lexing.errors;
 
+/**
+ * An UnexpectedSymbolException is thrown when the parser encounters a symbol when it expects a different one
+ */
 @SuppressWarnings("serial")
 public class UnexpectedSymbolException extends ParsingException {
     private String found;

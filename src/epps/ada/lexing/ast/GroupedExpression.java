@@ -10,6 +10,9 @@ package lexing.ast;
 
 import java.util.List;
 
+/**
+ * A GroupedExpression defines an expression in which the sub-expression is surrounded with a set of parentheses
+ */
 public class GroupedExpression implements Expression {
 
     private Expression expression;

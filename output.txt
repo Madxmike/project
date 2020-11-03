@@ -1,162 +1,88 @@
-with(with)
-indentifier(Text_IO)
-;(;)
-use(use)
-indentifier(Text_IO)
-;(;)
-procedure(procedure)
-indentifier(hello)
-is(is)
-begin(begin)
-indentifier(Put_Line)
-((()
-string_literal("Hello world!")
-)())
-;(;)
-end(end)
-indentifier(hello)
-;(;)
-with(with)
-indentifier(Text_IO)
-;(;)
-use(use)
-indentifier(Text_IO)
-;(;)
-procedure(procedure)
-indentifier(hello)
-is(is)
-begin(begin)
-indentifier(Put_Line)
-((()
-string_literal("Hello world!")
-)())
-;(;)
-end(end)
-indentifier(hello)
-;(;)
-with(with)
-indentifier(Text_IO)
-;(;)
-use(use)
-indentifier(Text_IO)
-;(;)
-procedure(procedure)
-indentifier(hello)
-is(is)
-begin(begin)
-indentifier(Put_Line)
-((()
-string_literal("Hello world!")
-)())
-;(;)
-end(end)
-indentifier(hello)
-;(;)
-with(with)
-indentifier(Text_IO)
-;(;)
-use(use)
-indentifier(Text_IO)
-;(;)
-procedure(procedure)
-indentifier(hello)
-is(is)
-begin(begin)
-indentifier(Put_Line)
-((()
-string_literal("Hello world!")
-)())
-;(;)
-end(end)
-indentifier(hello)
-;(;)
-with(with)
-indentifier(Text_IO)
-;(;)
-use(use)
-indentifier(Text_IO)
-;(;)
-procedure(procedure)
-indentifier(hello)
-is(is)
-begin(begin)
-indentifier(Put_Line)
-((()
-string_literal("Hello world!")
-)())
-;(;)
-end(end)
-indentifier(hello)
-;(;)
-with(with)
-indentifier(Text_IO)
-;(;)
-use(use)
-indentifier(Text_IO)
-;(;)
-procedure(procedure)
-indentifier(hello)
-is(is)
-begin(begin)
-indentifier(Put_Line)
-((()
-string_literal("Hello world")
-!(!)
-string_literal(");
-end hello;
 
-)
-with(with)
-indentifier(Text_IO)
-;(;)
-use(use)
-indentifier(Text_IO)
-;(;)
-procedure(procedure)
-indentifier(hello)
-is(is)
-begin(begin)
-indentifier(Put_Line)
-((()
-string_literal("Hello world!")
-)())
-;(;)
-end(end)
-indentifier(hello)
-;(;)
-with(with)
-indentifier(Text_IO)
-;(;)
-use(use)
-indentifier(Text_IO)
-;(;)
-procedure(procedure)
-indentifier(hello)
-is(is)
-begin(begin)
-indentifier(Put_Line)
-((()
-string_literal("Hello world!")
-)())
-;(;)
-end(end)
-indentifier(hello)
-;(;)
-with(with)
-indentifier(Text_IO)
-;(;)
-use(use)
-indentifier(Text_IO)
-;(;)
-procedure(procedure)
-indentifier(hello)
-is(is)
-begin(begin)
-indentifier(Put_Line)
-((()
-string_literal("Hello world!")
-)())
-;(;)
-end(end)
-indentifier(hello)
-;(;)
+- Program
+    - ProcedureStatement
+        - IdentifierExpression
+        - DeclarationStatement
+            - IdentifierExpression
+            - Type
+            - NumeralExpression
+        - DeclarationStatement
+            - IdentifierExpression
+            - Type
+            - NumeralExpression
+        - DeclarationStatement
+            - IdentifierExpression
+            - Type
+        - DeclarationStatement
+            - IdentifierExpression
+            - Type
+            - NumeralExpression
+        - BeginStatement
+            - AssignmentStatement
+                - IdentifierExpression
+                - InfixExpression
+                    - IdentifierExpression
+                    - OperatorExpression
+                    - NumeralExpression
+            - AssignmentStatement
+                - IdentifierExpression
+                - InfixExpression
+                    - IdentifierExpression
+                    - OperatorExpression
+                    - IdentifierExpression
+            - IdentifierExpression
+    - ProcedureStatement
+        - IdentifierExpression
+        - DeclarationStatement
+            - IdentifierExpression
+            - Type
+        - BeginStatement
+            - IdentifierExpression
+    - ProcedureStatement
+        - IdentifierExpression
+        - BeginStatement
+            - IdentifierExpression
+
+- Program
+    - ProcedureStatement
+        - IdentifierExpression
+        - DeclarationStatement
+            - IdentifierExpression
+            - Type
+            - NumeralExpression
+        - DeclarationStatement
+            - IdentifierExpression
+            - Type
+            - NumeralExpression
+        - DeclarationStatement
+            - IdentifierExpression
+            - Type
+        - DeclarationStatement
+            - IdentifierExpression
+            - Type
+            - NumeralExpression
+        - BeginStatement
+            - AssignmentStatement
+                - IdentifierExpression
+                - InfixExpression
+                    - IdentifierExpression
+                    - OperatorExpression
+                    - NumeralExpression
+            - AssignmentStatement
+                - IdentifierExpression
+                - InfixExpression
+                    - IdentifierExpression
+                    - OperatorExpression
+                    - IdentifierExpression
+            - IdentifierExpression
+    - ProcedureStatement
+        - IdentifierExpression
+        - DeclarationStatement
+            - IdentifierExpression
+            - Type
+        - BeginStatement
+            - IdentifierExpression
+    - ProcedureStatement
+        - IdentifierExpression
+        - BeginStatement
+            - IdentifierExpression

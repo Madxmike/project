@@ -13,6 +13,9 @@ import lexing.errors.ParsingException;
 import lexing.parsing.Parser;
 import lexing.parsing.TokenStream;
 
+/**
+ * A statement parser is a parser that will parse out a given statement and its subexpressions.
+ */
 @FunctionalInterface
 public interface StatementParser<T extends Statement> {
 

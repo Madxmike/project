@@ -22,8 +22,6 @@ public enum TokenPattern {
     KEYWORD_WITH("^with$", "with"), KEYWORD_USE("^use$", "use"), KEYWORD_PROCEDURE("^procedure$", "procedure"),
     KEYWORD_IS("^is$", "is"), KEYWORD_BEGIN("^begin$", "begin"), KEYWORD_END("^end$", "end"),
 
-    // TODO - Make this work with underscores and decimals
-    // Regex is on dead laptop :(
     NUMERAL("^[0-9]+[_0-9]*[.]?[_0-9]*$", "NUMERAL"), LITERAL_CHARACTER("^\'(.)\'", "character_literal"),
     LITERAL_STRING("^\"([^\"]+)([\"]*)$", "string_literal", true), IDENTIFIER("^([A-Za-z]+)(\\w+)$", "indentifier"),
     EOF("", "EOF");

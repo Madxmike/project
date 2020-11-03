@@ -11,6 +11,9 @@ package lexing.errors;
 
 import lexing.ast.Type;
 
+/**
+ * A TypeRedeclarationException is thrown when the parser tries to redeclare an identifier with a new type
+ */
 @SuppressWarnings("serial")
 public class TypeRedeclarationException extends ParsingException {
     private String identifierValue;

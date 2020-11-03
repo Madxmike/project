@@ -8,9 +8,13 @@
  */
 package lexing.ast;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+* The program is the root of the entire syntax tree
+*/
 public class Program implements Node {
 
     private List<Statement> statements;
@@ -19,6 +23,9 @@ public class Program implements Node {
         this.statements = new ArrayList<>();
     }
 
+    /**
+     * Adds a statement to the root of tree
+     */
     public void addStatement(Statement statement) {
         this.statements.add(statement);
     }
@@ -34,14 +41,23 @@ public class Program implements Node {
         return builder.toString();
     }
 
-    public void printProgram() {
+    /**
+     * Prints out the syntax tree to the provided print stream
+     */
+    public void printProgram(PrintStream out) {
         StringBuilder builder = new StringBuilder();
 
         printNode(builder, this, 0);
 
-        System.out.println(builder.toString());
+        out.println(builder.toString());
     }
 
+    /**
+     * Prints out the syntax tree by recursively going through all of the current node's children
+     * @param builder The builder to write to
+     * @param node The current node being printed
+     * @param indentation The current recursive depth
+     */
     public void printNode(StringBuilder builder, Node node, int indentation) {
         builder.append("\n");
         for (int i = 0; i < indentation; i++) {

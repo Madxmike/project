@@ -11,6 +11,9 @@ package lexing.ast;
 
 import java.util.List;
 
+/**
+ * A BeginStatement defines the begin block in statements such as a Procedure. This is just the list of all statements between "begin" and "end"
+ */
 public class BeginStatement implements Statement {
 
     private List<Statement> statements;

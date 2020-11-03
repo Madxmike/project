@@ -11,6 +11,9 @@ package lexing.errors;
 
 import lexing.ast.Statement;
 
+/**
+ * An UnexpectedStatementException is thrown when the parser encounters a statement that is not allowed
+ */
 @SuppressWarnings("serial")
 public class UnexpectedStatementException extends ParsingException {
 

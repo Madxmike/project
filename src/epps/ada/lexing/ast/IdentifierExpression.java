@@ -8,6 +8,9 @@
  */
 package lexing.ast;
 
+/**
+ * An IdentifierExpression defines an expression that is simply an identifier
+ */
 public class IdentifierExpression implements Expression {
     private String value;
 

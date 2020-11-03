@@ -10,6 +10,9 @@ package lexing.ast;
 
 import java.util.List;
 
+/**
+ * A ProcedureStatement defines the name, parameters, locals, and begin block for a procedure
+ */
 public class ProcedureStatement implements Statement {
 
     private IdentifierExpression name;

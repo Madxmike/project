@@ -11,6 +11,9 @@ package lexing.errors;
 import lexing.ast.IdentifierExpression;
 import lexing.ast.Type;
 
+/**
+ * An UnknownTypeException is thrown when the parser encounters a type that is not previously defined
+ */
 @SuppressWarnings("serial")
 public class UnknownTypeException extends ParsingException {
     private IdentifierExpression identifier;

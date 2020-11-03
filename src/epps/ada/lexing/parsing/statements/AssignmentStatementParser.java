@@ -19,6 +19,10 @@ import lexing.errors.ParsingException;
 import lexing.parsing.Parser;
 import lexing.parsing.TokenStream;
 
+/**
+ * An AssignmentStatementParser parses out an assignment statement of the form:
+ * <identifier list> := <expression list>
+ */
 public class AssignmentStatementParser implements StatementParser<AssignmentStatement> {
 
     private List<IdentifierExpression> identifiers;
@@ -29,14 +33,19 @@ public class AssignmentStatementParser implements StatementParser<AssignmentStat
 
     @Override
     public AssignmentStatement parse(Parser parser, TokenStream tokenStream) throws ParsingException {
+        // We are assuming that we are starting at the expression list since we have the identifier list already
         tokenStream.currentMustNotBe(TokenPattern.SYMBOL_COLON);
         tokenStream.currentMustNotBe(TokenPattern.SYMBOL_SEMICOLON);
 
+        // Parse out the expressions
         List<Expression> values = parser.parseExpressionList();
 
+        // If the identifiers dont match the expressions then error out
         if (identifiers.size() != values.size()) {
             throw new MismatchedDeclarationsException(identifiers.size(), values.size());
         }
+
+        // Must end with a semi-colon
         tokenStream.currentMustBe(TokenPattern.SYMBOL_SEMICOLON);
         tokenStream.advance();
         return new AssignmentStatement(identifiers, values);

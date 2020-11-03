@@ -10,6 +10,9 @@ package lexing.errors;
 
 import grammar.TokenPattern;
 
+/**
+ * An ExceptedSymbolException is thrown when the parser does not encounter the token that it expects
+ */
 @SuppressWarnings("serial")
 public class ExpectedSymbolException extends ParsingException {
 

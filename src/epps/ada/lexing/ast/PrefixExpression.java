@@ -10,12 +10,15 @@ package lexing.ast;
 
 import java.util.List;
 
+/**
+ * A PrefixExpression defines an expression that has an operator prefixed to it
+ */
 public class PrefixExpression implements Expression {
 
-    private String operator;
+    private OperatorExpression operator;
     private Expression right;
 
-    public PrefixExpression(String operator) {
+    public PrefixExpression(OperatorExpression operator) {
         this.operator = operator;
     }
 
@@ -25,12 +28,12 @@ public class PrefixExpression implements Expression {
 
     @Override
     public String toString() {
-        return operator + right;
+        return operator +  " " + right;
     }
 
     @Override
     public void addChildren(List<Node> children) {
-        // TODO - Add operator here
+        children.add(operator);
         children.add(right);
     }
 

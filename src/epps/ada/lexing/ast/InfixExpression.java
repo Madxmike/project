@@ -10,13 +10,16 @@ package lexing.ast;
 
 import java.util.List;
 
+/**
+ * An InfixExpression defines an expression where the left half expression and right half expression are seperated by a operator
+ */
 public class InfixExpression implements Expression {
 
     private Expression left;
-    private String operator;
+    private OperatorExpression operator;
     private Expression right;
 
-    public InfixExpression(Expression left, String operator) {
+    public InfixExpression(Expression left, OperatorExpression operator) {
         this.left = left;
         this.operator = operator;
     }
@@ -32,7 +35,7 @@ public class InfixExpression implements Expression {
 
     public void addChildren(List<Node> children) {
         children.add(left);
-        // TODO - add operator here
+        children.add(operator);
         children.add(right);
     }
 

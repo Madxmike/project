@@ -8,6 +8,10 @@
  */
 package lexing.ast;
 
+/**
+ * A NumeralExpression defines a numeral value in an expression
+ * Temporary until Integer and float types are seperated.
+ */
 public class NumeralExpression implements Expression {
 
     private float value;

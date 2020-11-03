@@ -8,6 +8,9 @@
  */
 package lexing.ast;
 
+/**
+ * Base class for all Identifier based statements
+ */
 public abstract class IdentifierStatement implements Statement {
 
 }

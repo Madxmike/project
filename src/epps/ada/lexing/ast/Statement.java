@@ -8,6 +8,9 @@
  */
 package lexing.ast;
 
+/**
+ * The base interface implemented by all statements
+ */
 public interface Statement extends Node {
 
 }

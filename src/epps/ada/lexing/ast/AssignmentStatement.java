@@ -11,6 +11,9 @@ package lexing.ast;
 
 import java.util.List;
 
+/**
+ * An AssignmentStatement defines an assignment where a list of identifiers is assigned to a list of expression values
+ */
 public class AssignmentStatement extends IdentifierStatement {
 
     private List<IdentifierExpression> identifiers;

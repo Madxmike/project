@@ -10,8 +10,15 @@ package lexing.ast;
 
 import java.util.List;
 
+/**
+ * The base class all statements and expressions implmenet
+ */
 public interface Node {
 
+    /**
+     * Add all the node's children to the list for printing
+     * @param children
+     */
     default void addChildren(List<Node> children) {
         // NO-OP
     }
