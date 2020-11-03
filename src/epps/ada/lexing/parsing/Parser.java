@@ -7,6 +7,7 @@ import java.util.Map;
 
 import grammar.TokenPattern;
 import lexing.ast.Expression;
+import lexing.ast.IdentifierExpression;
 import lexing.ast.NumeralExpression;
 import lexing.ast.Program;
 import lexing.ast.Statement;
@@ -24,6 +25,7 @@ import lexing.parsing.statements.StatementParser;
 public class Parser {
 
     private TokenStream tokenStream;
+    private IdentifierTable IdentifierTable;
 
     private Map<TokenPattern, StatementParser<?>> statementParsers;
     private Map<TokenPattern, ExpressionParser<?>> prefixParsers;
@@ -34,6 +36,8 @@ public class Parser {
 
     public Parser(TokenStream tokenStream) {
         this.tokenStream = tokenStream;
+        this.IdentifierTable = new IdentifierTable();
+
         this.statementParsers = new HashMap<>();
         this.statementParsers.put(TokenPattern.IDENTIFIER, new IdentifierStatementParser());
         this.statementParsers.put(TokenPattern.KEYWORD_PROCEDURE, new ProcedureStatementParser());
@@ -41,7 +45,7 @@ public class Parser {
 
         this.prefixParsers = new HashMap<>();
         this.prefixParsers.put(TokenPattern.IDENTIFIER, (p, s) -> {
-            return IdentifierTable.getOrCreate(s.currentLiteral());
+            return new IdentifierExpression(s.currentLiteral());
         });
         this.prefixParsers.put(TokenPattern.NUMERAL, (p, s) -> {
             return new NumeralExpression(Float.parseFloat(s.currentLiteral().replaceAll("_", "")));
@@ -70,8 +74,6 @@ public class Parser {
         this.precedences.put(TokenPattern.SYMBOL_DIVISION, 4);
         this.precedences.put(TokenPattern.SYMBOL_MULTIPLICATION, 4);
 
-        IdentifierTable.addType(new Type("Integer"));
-        IdentifierTable.addType(new Type("Float"));
     }
 
     public Program parse() throws RuntimeException {
@@ -159,5 +161,9 @@ public class Parser {
 
     private int nextPrecedence() {
         return this.precedences.getOrDefault(this.tokenStream.nextPattern(), 0);
+    }
+
+    public IdentifierTable getIdentifierTable() {
+        return IdentifierTable;
     }
 }

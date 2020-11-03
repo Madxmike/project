@@ -14,6 +14,7 @@ import lexing.errors.ExpectedSymbolException;
 import lexing.errors.InvalidExpressionException;
 import lexing.errors.ParsingException;
 import lexing.errors.UnexpectedStatementException;
+import lexing.parsing.IdentifierTable;
 import lexing.parsing.Parser;
 import lexing.parsing.TokenStream;
 
@@ -24,10 +25,15 @@ public class ProcedureStatementParser implements StatementParser<ProcedureStatem
         tokenStream.advance();
         tokenStream.currentMustBe(TokenPattern.IDENTIFIER);
 
-        Expression functionName = parser.parseExpression(0);
-        if (!(functionName instanceof IdentifierExpression)) {
-            throw new InvalidExpressionException(functionName);
+        Expression expression = parser.parseExpression(0);
+        if (!(expression instanceof IdentifierExpression)) {
+            throw new InvalidExpressionException(expression);
         }
+
+        IdentifierExpression procedureName = (IdentifierExpression) expression;
+        parser.getIdentifierTable().pushScope(procedureName);
+        parser.getIdentifierTable().declareIdentifier(procedureName, IdentifierTable.BUILT_IN_TYPE_PROCEDURE);
+
         tokenStream.advance();
 
         List<DeclarationStatement> parameters = new ArrayList<>();
@@ -52,13 +58,14 @@ public class ProcedureStatementParser implements StatementParser<ProcedureStatem
 
         tokenStream.currentMustBe(TokenPattern.KEYWORD_BEGIN);
         BeginStatement begin = (BeginStatement) parser.parseStatement();
-        if (!begin.getBelongsTo().equals(functionName)) {
-            throw new ParsingException("expected to find " + functionName + ", but found " + begin.getBelongsTo());
+        if (!begin.getBelongsTo().equals(procedureName)) {
+            throw new ParsingException("expected to find " + procedureName + ", but found " + begin.getBelongsTo());
         }
         tokenStream.currentMustBe(TokenPattern.SYMBOL_SEMICOLON);
         tokenStream.advance();
 
-        return new ProcedureStatement((IdentifierExpression) functionName, parameters, locals, begin);
+        parser.getIdentifierTable().popScope();
+        return new ProcedureStatement(procedureName, parameters, locals, begin);
     }
 
     private List<DeclarationStatement> parseDeclarationStatementList(Parser parser, TokenStream tokenStream)

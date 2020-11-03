@@ -1,3 +1,7 @@
+/**
+ * 
+ */
+
 package lexing.ast;
 
 import java.util.List;

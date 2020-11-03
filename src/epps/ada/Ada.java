@@ -34,7 +34,7 @@ public class Ada {
             Parser parser = new Parser(tokenStream);
             Program program = parser.parse();
 
-            System.out.println(program.toString());
+            // System.out.println(program.toString());
             program.printProgram();
 
             inputFile.close();

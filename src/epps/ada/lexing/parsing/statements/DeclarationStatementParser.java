@@ -31,7 +31,7 @@ public class DeclarationStatementParser implements StatementParser<DeclarationSt
         tokenStream.advance();
 
         for (IdentifierExpression identifier : identifiers) {
-            IdentifierTable.setTypeForIdentifier(identifier, type);
+            parser.getIdentifierTable().declareIdentifier(identifier, type);
         }
 
         if (tokenStream.isCurrent(TokenPattern.SYMBOL_ASSIGNMENT)) {

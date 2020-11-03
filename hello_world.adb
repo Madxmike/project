@@ -13,7 +13,7 @@ begin
 end hello;
 
 
-procedure singleArgs (input : Integer)
+procedure singleArgs (paramOne : Float)
 is
 begin
 end singleArgs;

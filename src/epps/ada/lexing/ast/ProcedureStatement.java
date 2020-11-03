@@ -25,15 +25,15 @@ public class ProcedureStatement implements Statement {
         if (parameters.size() > 0) {
             builder.append(" (\n");
             parameters.forEach(p -> {
-                builder.append(parameters);
+                builder.append(p);
                 builder.append("\n");
             });
             builder.append(")");
         }
         if (begin != null) {
             builder.append(" is \n");
-            parameters.forEach(p -> {
-                builder.append(locals);
+            locals.forEach(l -> {
+                builder.append(l);
                 builder.append("\n");
             });
             builder.append(begin);
