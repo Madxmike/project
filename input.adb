@@ -9,6 +9,7 @@ begin
 
     paramOne := paramOne * 2;
     paramFour := paramOne + paramTwo;
+    paramFive := (paramOne + 5) * paramThree;
 
 end hello;
 
@@ -22,3 +23,9 @@ procedure noArgs is
 begin
 
 end noArgs;
+
+procedure input is
+begin
+    hello(1, 4, 3);
+
+end input;

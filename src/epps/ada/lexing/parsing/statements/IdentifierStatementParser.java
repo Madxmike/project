@@ -29,6 +29,11 @@ public class IdentifierStatementParser implements StatementParser<IdentifierStat
 
     @Override
     public IdentifierStatement parse(Parser parser, TokenStream tokenStream) throws ParsingException {
+
+        if(tokenStream.isNext(TokenPattern.SYMBOL_PAREN_LEFT)) {
+            return new CallStatementParser().parse(parser, tokenStream);
+        }
+ 
         List<IdentifierExpression> identifiers = this.parseIdentifierList(parser, tokenStream);
         if (tokenStream.isCurrent(TokenPattern.SYMBOL_COLON)) {
             tokenStream.advance();

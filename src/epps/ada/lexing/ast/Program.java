@@ -78,4 +78,11 @@ public class Program implements Node {
     public void addChildren(List<Node> children) {
         children.addAll(statements);
     }
+
+    /**
+     * @return The top level statements (i.e. procedures) in this program tree
+     */
+    public List<Statement> getStatements() {
+        return this.statements;
+    }
 }

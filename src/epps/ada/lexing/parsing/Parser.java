@@ -20,6 +20,7 @@ import lexing.ast.NumeralExpression;
 import lexing.ast.Program;
 import lexing.ast.Statement;
 import lexing.errors.ParsingException;
+import lexing.parsing.expressions.CallExpressionParser;
 import lexing.parsing.expressions.ExpressionParser;
 import lexing.parsing.expressions.GroupedExpressionParser;
 import lexing.parsing.expressions.InfixExpressionParser;
@@ -119,6 +120,7 @@ public class Parser {
         this.precedences.put(TokenPattern.SYMBOL_MINUS, 3);
         this.precedences.put(TokenPattern.SYMBOL_DIVISION, 4);
         this.precedences.put(TokenPattern.SYMBOL_MULTIPLICATION, 4);
+        this.precedences.put(TokenPattern.SYMBOL_PAREN_LEFT, 5);
 
     }
 
@@ -172,6 +174,7 @@ public class Parser {
             // Actually parse the next statement
             Statement statement = statementParser.parse(this, this.tokenStream);
             if (statement == null) {
+                System.out.println(tokenStream.currentPattern());
                 throw new ParsingException("invalid statement");
             }
             return statement;

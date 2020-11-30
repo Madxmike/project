@@ -24,6 +24,10 @@ public class BeginStatement implements Statement {
         this.belongsTo = belongsTo;
     }
 
+    public List<Statement> getStatements() {
+        return statements;
+    }
+
     public IdentifierExpression getBelongsTo() {
         return belongsTo;
     }

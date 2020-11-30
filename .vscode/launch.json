@@ -6,11 +6,17 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Ada",
+            "request": "launch",
+            "mainClass": "Ada",
+            "projectName": "project_7b641929"
+        },
+        {
+            "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "args": "hello_world.adb"
-
+            "args": "input.adb"
         },
         {
             "type": "java",
@@ -18,7 +24,7 @@
             "request": "launch",
             "mainClass": "Ada",
             "projectName": "project_8380ef48",
-            "args": "hello_world.adb"
+            "args": "input.adb"
         }
     ]
 }

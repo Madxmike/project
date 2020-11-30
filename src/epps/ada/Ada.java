@@ -19,6 +19,7 @@ import java.nio.file.StandardOpenOption;
 
 import grammar.TokenPattern;
 import grammar.Tokenizer;
+import interpreter.Interpreter;
 import lexing.Scanner;
 import lexing.ast.Program;
 import lexing.parsing.Parser;
@@ -27,15 +28,23 @@ import lexing.parsing.TokenStream;
 public class Ada {
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.out.println("usage: ada <path to ada file>");
+            System.out.println("usage: ada <path to ada file> <entry point>");
+            System.out.println("If an entry point is not provided then the file name will be used");
             return;
         }
+
+ 
 
         Tokenizer tokenizer = new Tokenizer(TokenPattern.values());
         Path inputFilePath = FileSystems.getDefault().getPath(args[0]);
         Path outputFilePath = FileSystems.getDefault().getPath("./output.txt");
 
         try {
+            String entryPoint = args[0].substring(0, args[0].lastIndexOf(".adb"));
+
+            if(args.length >= 2) {
+                entryPoint = args[1];
+            }
             InputStream inputFile = new BufferedInputStream(Files.newInputStream(inputFilePath));
             PrintStream outputFile = new PrintStream(Files.newOutputStream(outputFilePath, StandardOpenOption.APPEND));
 
@@ -46,6 +55,10 @@ public class Ada {
 
             // System.out.println(program.toString());
             program.printProgram(outputFile);
+
+            Interpreter interpreter = new Interpreter(entryPoint);
+
+            interpreter.evaluate(program);
 
             inputFile.close();
             outputFile.close();

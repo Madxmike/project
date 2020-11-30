@@ -61,4 +61,16 @@ public class ProcedureStatement implements Statement {
         children.add(begin);
     }
 
+    public String getName() {
+        return name.getValue();
+    }
+
+    public int numParameters() {
+        return parameters.size();
+    }
+
+    public BeginStatement getBeginStatement() {
+        return this.begin;
+    }
+
 }
