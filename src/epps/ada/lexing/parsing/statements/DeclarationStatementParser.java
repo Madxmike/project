@@ -68,7 +68,6 @@ public class DeclarationStatementParser implements StatementParser<DeclarationSt
         }
 
         tokenStream.currentMustBe(TokenPattern.SYMBOL_SEMICOLON);
-        tokenStream.advance();
         return new DeclarationStatement(identifiers, type, new ArrayList<>());
     }
 

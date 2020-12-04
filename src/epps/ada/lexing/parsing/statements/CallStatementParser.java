@@ -2,7 +2,6 @@ package lexing.parsing.statements;
 
 import grammar.TokenPattern;
 import lexing.ast.CallExpression;
-import lexing.ast.CallStatement;
 import lexing.ast.Expression;
 import lexing.ast.IdentifierStatement;
 import lexing.errors.ParsingException;
@@ -19,10 +18,7 @@ public class CallStatementParser extends IdentifierStatementParser {
 
         tokenStream.currentMustBe(TokenPattern.SYMBOL_SEMICOLON);
         tokenStream.advance();
-        if(callExpression != null) {
-            return new CallStatement( callExpression);
-        }
-        return null;
+        return callExpression;
     }
     
 }

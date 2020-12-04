@@ -24,6 +24,15 @@ public class AssignmentStatement extends IdentifierStatement {
         this.values = values;
     }
 
+    public List<IdentifierExpression> getIdentifiers() {
+        return identifiers;
+    }
+
+    public List<Expression> getValues() {
+        return values;
+    }
+
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

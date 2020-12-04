@@ -2,7 +2,7 @@ package lexing.ast;
 
 import java.util.List;
 
-public class CallExpression implements Expression {
+public class CallExpression extends IdentifierStatement implements Expression {
      
     private IdentifierExpression function;
     private List<Expression> args;
@@ -12,6 +12,13 @@ public class CallExpression implements Expression {
         this.args = args;
     }
 
+    public String getFunctionName() {
+        return function.getValue();
+    }
+
+    public List<Expression> getArgsExpressions() {
+        return args;
+    }
 
     @Override
     public String toString() {

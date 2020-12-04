@@ -61,7 +61,7 @@ public class ProcedureStatementParser implements StatementParser<ProcedureStatem
         // Parse out the list of formal parameters in the parentheses, if there are any
         List<DeclarationStatement> parameters = new ArrayList<>();
         if (tokenStream.isCurrent(TokenPattern.SYMBOL_PAREN_LEFT)) {
-            parameters = parseDeclarationStatementList(parser, tokenStream);
+            parameters = parseDeclarationStatementList(parser, tokenStream, true);
             // The last formal parameter must not end with a semicolon
             tokenStream.currentMustNotBe(TokenPattern.SYMBOL_SEMICOLON);
             tokenStream.currentMustBe(TokenPattern.SYMBOL_PAREN_RIGHT);
@@ -74,7 +74,7 @@ public class ProcedureStatementParser implements StatementParser<ProcedureStatem
         // If we arn't at the begin block then we are declaring local variables
         List<DeclarationStatement> locals = new ArrayList<>();
         if (!tokenStream.isNext(TokenPattern.KEYWORD_BEGIN)) {
-            locals = parseDeclarationStatementList(parser, tokenStream);
+            locals = parseDeclarationStatementList(parser, tokenStream, false);
             tokenStream.currentMustBe(TokenPattern.SYMBOL_SEMICOLON);
         }
 
@@ -109,7 +109,7 @@ public class ProcedureStatementParser implements StatementParser<ProcedureStatem
      * @throws ParsingException Thrown if any errors occur while parsing the
      *                          declaration statements
      */
-    private List<DeclarationStatement> parseDeclarationStatementList(Parser parser, TokenStream tokenStream)
+    private List<DeclarationStatement> parseDeclarationStatementList(Parser parser, TokenStream tokenStream, boolean isParameterList)
             throws ParsingException {
 
         List<DeclarationStatement> declarations = new ArrayList<>();
@@ -134,6 +134,23 @@ public class ProcedureStatementParser implements StatementParser<ProcedureStatem
             // Continue as long as we find a semi-colon ending the current declaration statement
             // followed by an identifier starting the next one
         } while (tokenStream.isCurrent(TokenPattern.SYMBOL_SEMICOLON) && tokenStream.isNext(TokenPattern.IDENTIFIER));
+
+        // Only the last formal parameter declaration is allowed to have defaults
+        if(isParameterList) {
+            for(int i = 0; i < declarations.size() - 1; i++) {
+                if(declarations.get(i).getDefaultValues().size() > 0) {
+                    throw new UnexpectedStatementException(declarations.get(i));
+                }
+            }
+
+            // Handle skipping over the last semicolon if we have a default value list
+            if(declarations.get(declarations.size() - 1).getDefaultValues().size() != 0) {
+                tokenStream.advance();
+
+            }
+
+        }
+
 
         return declarations;
     }

@@ -26,6 +26,14 @@ public class DeclarationStatement extends IdentifierStatement {
         this.defaultValues = defaultValues;
     }
 
+    public List<IdentifierExpression> getIdentifiers() {
+        return identifiers;
+    }
+
+    public List<Expression> getDefaultValues() {
+        return defaultValues;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

@@ -1,31 +1,12 @@
- procedure hello 
-(
-    paramOne : Integer := 10; 
-    paramTwo : Integer := 10;
-    paramThree : Integer
-) is
-    paramFive : Integer := 4;
+procedure test (param: Integer) is
+    local : Integer := 4;
 begin
 
-    paramOne := paramOne * 2;
-    paramFour := paramOne + paramTwo;
-    paramFive := (paramOne + 5) * paramThree;
+    local := local + (param * 10);
 
-end hello;
-
-
-procedure singleArgs (paramOne : Float)
-is
-begin
-end singleArgs;
-
-procedure noArgs is 
-begin
-
-end noArgs;
+end test;
 
 procedure input is
 begin
-    hello(1, 4, 3);
-
+    test(3);
 end input;

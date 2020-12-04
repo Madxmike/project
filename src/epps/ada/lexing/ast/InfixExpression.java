@@ -10,6 +10,7 @@ package lexing.ast;
 
 import java.util.List;
 
+
 /**
  * An InfixExpression defines an expression where the left half expression and right half expression are seperated by a operator
  */
@@ -26,6 +27,18 @@ public class InfixExpression implements Expression {
 
     public void setRight(Expression right) {
         this.right = right;
+    }
+
+    public Expression getLeft() {
+        return left;
+    }
+
+    public Expression getRight() {
+        return right;
+    }
+
+    public OperatorExpression getOperator() {
+        return operator;
     }
 
     @Override

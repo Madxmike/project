@@ -65,8 +65,12 @@ public class ProcedureStatement implements Statement {
         return name.getValue();
     }
 
-    public int numParameters() {
-        return parameters.size();
+    public List<DeclarationStatement> getParameters() {
+        return parameters;
+    }
+
+    public List<DeclarationStatement> getLocals() {
+        return locals;
     }
 
     public BeginStatement getBeginStatement() {
